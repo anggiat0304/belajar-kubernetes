@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replica-set-node-selector
+  labels:
+    owner: finance-team
+  annotations:
+    describe: ini adalah node selector punya tim finance yah. i love u
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+           - nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+      annotations:
+        describe: ini adalah punya tim finance sayang
+    spec:
+      nodeSelector:
+        gpu: "true"
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+           - containerPort: 80

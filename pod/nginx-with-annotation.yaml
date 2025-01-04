@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-with-annotations
+  labels:
+    teams: finance
+    vesion: 1.1.5
+    environment: production
+  annotations:
+    description: ini adalah aplikasi yang dibuat tim production
+    date: 18/02/2024
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
